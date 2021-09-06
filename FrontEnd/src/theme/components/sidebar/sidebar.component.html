@@ -1,0 +1,9 @@
+<header>FormaPlus</header>
+<nav class="mdl-navigation">
+  <div *ngIf="idUser=='1' ; else elseBlock"> 
+  <base-menu-item *ngFor="let item of menu" [data]="item"></base-menu-item>
+  </div>
+  <ng-template #elseBlock><base-menu-item *ngFor="let item of menuUser" [data]="item"></base-menu-item></ng-template>
+  
+  <div class="mdl-layout-spacer"></div>
+</nav>

@@ -1,0 +1,56 @@
+<base-card>
+  <base-card-title>
+    <h2 class="mdl-card__title-text">À vos propositions..</h2>
+  </base-card-title>
+  <base-card-body style="width: 100%;">
+    <ul class="mdl-list">
+      <li *ngFor="let item of items" class="mdl-list__item ok" #listItem>
+       <i style="padding-right:3%; color:tomato;" class="material-icons">done</i>
+        <span class="mdl-list__item-primary-content">
+          <label [for]="item.id"
+                 class=" mdl-js-ripple-effect"
+                >
+            
+            <span >  {{ item.title }}</span>
+          </label>
+        </span>
+        <div class="mdl-list__item-secondary-content">
+   
+        </div>
+      </li>
+      <li *ngIf="this.createdItem !== null" class="mdl-list__item " #listItem>
+        <span class="mdl-list__item-primary-content">
+          <label for="input"
+                 class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"
+                 [class.is-checked]="this.createdItem.completed"
+                 checkboxItem>
+            <input type="checkbox" class="mdl-checkbox__input" id="input" [(ngModel)]="this.createdItem.completed"/>
+            <span >
+              <div class="mdl-textfield mdl-js-textfield" style="width:100%;margin-top:-20%;height:-10%;"  >
+                <input class="mdl-textfield__input" type="text" id="todoInput" #todoInput (keydown.escape)="this.createdItem = null" (keydown.enter)="this.addItem()" [(ngModel)]="this.createdItem.title"/>
+                <label class="mdl-textfield__label" for="todoInput">Votre proposition..</label>
+              </div>
+            </span>
+          </label>
+        </span>
+        <div class="mdl-list__item-secondary-content">
+          <button attr.for="input" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored mdl-button--mini-icon pull-right"
+                  deleteItem
+                  (click)="createdItem = null">
+            <i class="material-icons">clear</i>
+          </button>
+        
+        </div>
+      </li>
+    </ul>
+  </base-card-body>
+  <base-card-actions>
+  
+    <button
+      class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-shadow--8dp mdl-button--colored"
+      [disabled]="createdItem !== null"
+      (click)="createItem()">
+      <i class="material-icons mdl-js-ripple-effect">add</i>
+    </button>
+  </base-card-actions>
+</base-card>

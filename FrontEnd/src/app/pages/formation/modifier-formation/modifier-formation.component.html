@@ -1,0 +1,156 @@
+<div class="mdl-grid" *ngIf="Show_modif">
+  <div class="mdl-layout-spacer"></div>
+   
+   
+<div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+  <base-card>
+    <base-card-title>
+      <h2 class="mdl-card__title-text">Modifier une formation</h2>
+    </base-card-title>
+    <base-card-body expanded>
+
+    <form class="form" class="example-form">
+
+      
+  
+
+      <mat-form-field >
+        <input matInput placeholder="Titre" [(ngModel)] = "updatedFormation.titre" name="titre">
+    
+
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Type de formation</mat-label>
+        <mat-select disableRipple placeholder="type" [(value)]="SelectedF" [(ngModel)] = "updatedFormation.type_formation" name="type_formation">
+          <mat-option value="En ligne">En ligne</mat-option>
+          <mat-option value="Presentielle">Presentielle</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Domaine</mat-label>
+        <input type="text" name="domaine" [(ngModel)]="updatedFormation.domaine" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.libelle}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      
+
+<!-- -->
+
+    <mat-form-field >
+      <input matInput placeholder="nbSession" [(ngModel)] = "updatedFormation.nb_session" name="nb_session" >
+    </mat-form-field>
+  
+
+  <mat-form-field >
+    <input matInput placeholder="Duree" [(ngModel)] = "updatedFormation.duree"  name="duree" >
+  
+  </mat-form-field>
+    <br>
+    <br> 
+
+    <mat-form-field appearance="fill">
+      <mat-label>Budget</mat-label>
+      <input matInput type="number" class="example-right-align"  placeholder="budget" [(ngModel)] = "updatedFormation.budget" name="budget" >
+      <span matPrefix>$&nbsp;</span>
+      <span matSuffix>.00</span>
+    </mat-form-field>
+    <br>
+    <br>
+    </form>
+
+
+
+
+
+</base-card-body>
+<base-card-actions>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal pull-right" (click)="onSubmit()">
+    Enregistrer
+  </button>
+</base-card-actions>
+
+</base-card>
+</div>
+<div class="mdl-layout-spacer"></div>
+</div>
+
+
+<br>
+<br>
+
+  <mat-form-field fxFlex="20%">
+    <mat-label style="color: #919191;">Recherche</mat-label>
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" style="color: #919191;">
+  </mat-form-field>
+
+
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--raised mdl-js-ripple-effect button--colored-teal" (click)="update(element)">
+          <i class="material-icons">update</i>
+        </button>
+        
+        
+        </td>
+    </ng-container>
+
+
+  
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="titre">
+      <th mat-header-cell *matHeaderCellDef> Titre </th>
+      <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+    </ng-container>
+       <!-- Position Column -->
+       <ng-container matColumnDef="budget">
+        <th mat-header-cell *matHeaderCellDef> Budget</th>
+        <td mat-cell *matCellDef="let element"> {{element.budget}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="duree">
+        <th mat-header-cell *matHeaderCellDef> Duree </th>
+        <td mat-cell *matCellDef="let element"> {{element.duree}} </td>
+      </ng-container>
+       <!-- Position Column -->
+       <ng-container matColumnDef="nb_session">
+        <th mat-header-cell *matHeaderCellDef> Nombre de sessions</th>
+        <td mat-cell *matCellDef="let element"> {{element.nb_session}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="type_formation">
+        <th mat-header-cell *matHeaderCellDef> Type formation </th>
+        <td mat-cell *matCellDef="let element"> {{element.type_formation}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="domaine">
+        <th mat-header-cell *matHeaderCellDef> Domaine </th>
+        <td mat-cell *matCellDef="let element"> {{element.domaine.libelle}} </td>
+      </ng-container>
+    
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+  

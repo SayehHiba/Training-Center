@@ -1,0 +1,117 @@
+<div class="mdl-card mdl-card__blank-layout-card mdl-shadow--2dp">
+  <div class="mdl-card__supporting-text color--dark-gray">
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+        <span class="mdl-card__title-text text-color--smooth-gray">FormaPlus</span>
+      </div>
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+        <span class="blank-layout-card-name text-color--white">S'inscrire</span>
+      </div>
+      <form class="login-form" [formGroup]="signupForm" (submit)="login()" novalidate autocomplete="off">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone">
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+             
+            <input formControlName="nameFormControl"
+                  
+                   class="mdl-textfield__input" type="text" id="name">
+            <label class="mdl-textfield__label" for="name">Nom</label>
+
+          
+          </div>
+
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+             
+            <input formControlName="lastnameFormControl"
+                  
+                   class="mdl-textfield__input" type="text" id="lastname">
+            <label class="mdl-textfield__label" for="name">Prénom</label>
+
+          
+          </div>
+
+          <div class="container text-center">
+          <div style="color: #919191;">  Numéro de téléphone </div>
+
+            <div class="form-group" style="color: black;">
+
+            <input class="form-control lastnamefilter" type="number" ng2TelInput formControlName="phoneFormControl" name="tel"
+            (countryChange)="onCountryChange($event)" />
+            </div>
+          </div>
+
+
+          <mat-form-field appearance="fill"  class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size" style="color: #919191;">
+            <mat-label style="color: #919191;">Date de naissance</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateFormControl" style="color: #919191;">
+            <mat-datepicker-toggle matSuffix [for]="picker" style="color: #919191;"></mat-datepicker-toggle>
+            <mat-datepicker #picker style="color: #919191;"></mat-datepicker>
+          </mat-form-field>
+          
+      
+     
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+              
+            <input formControlName="profilFormControl"
+                 
+                   class="mdl-textfield__input" type="text" id="Profil">
+            <label class="mdl-textfield__label" for="Profil">Profil</label>
+      
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+              
+            <input formControlName="paysFormControl"
+                 
+                   class="mdl-textfield__input" type="text" id="Pays">
+            <label class="mdl-textfield__label" for="Pays">Pays</label>
+      
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+              
+            <input formControlName="typeFormControl"
+                 
+                   class="mdl-textfield__input" type="text" id="Type">
+            <label class="mdl-textfield__label" for="Type">Type</label>
+      
+          </div>
+
+
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+             
+            <input formControlName="emailFormControl"
+                 
+               
+                   class="mdl-textfield__input" type="text" id="email">
+            <label class="mdl-textfield__label" for="email">Email</label>
+
+     
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full-size">
+              
+            <input formControlName="passwordFormControl"
+                 
+                   class="mdl-textfield__input" type="password" id="password">
+            <label class="mdl-textfield__label" for="password">Mot de passe</label>
+      
+          </div>
+
+    
+
+          <label baseCheckbox color="light-blue" class="checkbox--inline" inline></label>
+          <span class="blank-layout-card-link">Je respecte et j'accepte <a href="#"
+                                                                            class="underlined">tous les termes de service</a></span>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--4-col-phone submit-cell">
+          <a routerLink="/pages/login" class="blank-layout-card-link">Déjà inscrit</a>
+          <div class="mdl-layout-spacer"></div>
+          <button class="mdl-button mdl-js-button mdl-button--raised color--light-blue"
+                  type="submit" >
+            S'inscrire
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

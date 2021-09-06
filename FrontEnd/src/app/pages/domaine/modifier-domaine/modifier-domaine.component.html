@@ -1,0 +1,76 @@
+
+<div class="mdl-grid">
+  
+
+  <div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+  <mat-form-field fxFlex="20%">
+    <mat-label style="color: #919191;">Recherche</mat-label>
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" style="color: #919191;">
+  </mat-form-field>
+
+
+  
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element">
+        
+        <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--raised mdl-js-ripple-effect button--colored-teal" (click)="update(element)">
+          <i class="material-icons">update</i>
+        </button>
+        
+        </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+
+       <!-- Position Column -->
+       <ng-container matColumnDef="libelle">
+        <th mat-header-cell *matHeaderCellDef> Domaines</th>
+        <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+      </ng-container>
+  
+    
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
+  <div *ngIf="Show_modif" class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+    <base-card>
+      <base-card-title>
+        <h2 class="mdl-card__title-text">Modifier un domaine</h2>
+      </base-card-title>
+      <base-card-body expanded>
+  
+      <form class="form" class="example-form">
+  
+        <br>
+        <br>
+        <mat-form-field class="example-full-width"   >
+            <input matInput placeholder="libelle" [(ngModel)] = "updatedDomaine.libelle" name="Nom domaine">
+          
+          </mat-form-field>
+          <br>
+          <br>
+    </form>
+  </base-card-body>
+  <base-card-actions>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal pull-right" (click)="onSubmit()">
+      Enregistrer
+    </button>
+  </base-card-actions>
+  
+  </base-card>
+  </div>
+
+
+  </div>

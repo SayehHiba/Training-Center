@@ -1,0 +1,36 @@
+<div class="mdl-grid">
+  <div class="mdl-layout-spacer"></div>
+   
+   
+<div class="mdl-cell mdl-cell--6-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+  <base-card>
+    <base-card-title>
+      <h2 class="mdl-card__title-text">Ajouter un domaine</h2>
+    </base-card-title>
+    <base-card-body expanded>
+
+    <form class="form" class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="nom du domaine" [formControl]="libelleFormControl" [errorStateMatcher]="matcher" [(ngModel)]="domaine.libelle" name ="libelle" >
+     
+        <mat-error *ngIf="libelleFormControl.hasError('libelle') && !libelleFormControl.hasError('required')">
+          Merci de préciser votre email
+        </mat-error>
+        <mat-error *ngIf="libelleFormControl.hasError('required')">
+          Insertion obligatoire 
+        </mat-error>
+      </mat-form-field>
+     
+    </form>
+
+    </base-card-body>
+    <base-card-actions>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal pull-right" (click)="onSubmit()">
+        Enregistrer
+      </button>
+    </base-card-actions>
+    
+    </base-card>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+    </div>

@@ -1,0 +1,34 @@
+@import '~theme/helpers';
+
+table {
+  width: 100%;
+  
+  background-color: #444444;
+}
+th{
+  font-size: 17px;
+  color: #999999;
+
+}
+.mat-select-value {
+  color: #999999!important;
+}
+td{
+  color: #999999;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.mat-paginator{
+  background-color: #444444;
+  color: #999999;
+}
+.mat-form-field{
+  background-color:#444444;
+  color: #999999; 
+}
+.mat-label{
+  color: #999999; 
+}
+

@@ -1,0 +1,156 @@
+<div class="mdl-grid">
+  <div class="mdl-layout-spacer"></div>
+   
+   
+<div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--10-col-tablet mdl-cell--5-col-phone">
+  <base-card>
+    <base-card-title>
+      <h2 class="mdl-card__title-text">Ajouter Une Session de Formation </h2>
+    </base-card-title>
+    <base-card-body expanded>
+
+    <form class="form" class="example-form">
+     
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Lieu"  [(ngModel)]="sessionFormation.lieu" name ="lieu">
+       
+      </mat-form-field>
+      <br>
+      <br>
+     
+
+      <mat-form-field appearance="fill">
+        <mat-label>Entrez la marge de date</mat-label>
+        <mat-date-range-input [formGroup]="periode" [rangePicker]="picker" >
+          <input matStartDate formControlName="start" placeholder="Start date" [(ngModel)]="sessionFormation.date_debut" name ="date_debut">
+          <input matEndDate formControlName="end" placeholder="End date" [(ngModel)]="sessionFormation.date_fin" name ="date_fin">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      
+        <mat-error *ngIf="periode.controls.start.hasError('matStartDateInvalid')">Date de début invalide</mat-error>
+        <mat-error *ngIf="periode.controls.end.hasError('matEndDateInvalid')">Date de fin invalide</mat-error>
+       </mat-form-field>
+        <br>
+        <br>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Organisme</mat-label>
+          <input type="text" matInput [formControl]="myControl" [(ngModel)]="sessionFormation.organisme" name ="organisme" [matAutocomplete]="matOrag">
+          <mat-autocomplete #matOrag="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.libelle}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <br>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>Formateur</mat-label>
+          <input type="text" matInput [formControl]="myControlF" [(ngModel)]="sessionFormation.formateur" name ="formateur" [matAutocomplete]="matFormateur">
+          <mat-autocomplete #matFormateur="matAutocomplete" [displayWith]="displayFnF">
+            <mat-option *ngFor="let option of filteredOptionsF | async" [value]="option">
+              {{option.email}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <br>
+        <br>
+        
+        <mat-form-field class="example-full-width">
+          <input matInput type="number" placeholder="NombreParticipants"[(ngModel)]="sessionFormation.nb_participants" name ="nb_participants">
+          
+        </mat-form-field>
+          <br>
+          <br> 
+      
+            <mat-label>Formation</mat-label>
+            <mat-form-field fxFlex="20%">
+              <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search">
+            </mat-form-field>
+          
+          
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+            
+              <!-- Checkbox Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>
+     
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+          
+          
+            
+            
+              <!-- Name Column -->
+              <ng-container matColumnDef="titre">
+                <th mat-header-cell *matHeaderCellDef> Titre </th>
+                <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+              </ng-container>
+                 <!-- Position Column -->
+                 <ng-container matColumnDef="budget">
+                  <th mat-header-cell *matHeaderCellDef> Budget</th>
+                  <td mat-cell *matCellDef="let element"> {{element.budget}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="duree">
+                  <th mat-header-cell *matHeaderCellDef> Duree </th>
+                  <td mat-cell *matCellDef="let element"> {{element.duree}} </td>
+                </ng-container>
+                 <!-- Position Column -->
+                 <ng-container matColumnDef="nb_session">
+                  <th mat-header-cell *matHeaderCellDef> Nombre de sessions</th>
+                  <td mat-cell *matCellDef="let element"> {{element.nb_session}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="type_formation">
+                  <th mat-header-cell *matHeaderCellDef> Type formation </th>
+                  <td mat-cell *matCellDef="let element"> {{element.type_formation}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="domaine">
+                  <th mat-header-cell *matHeaderCellDef> Domaine </th>
+                  <td mat-cell *matCellDef="let element"> {{element.domaine.libelle}} </td>
+                </ng-container>
+              
+            
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          
+          
+            
+
+
+  </form>
+
+</base-card-body>
+<base-card-actions>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal pull-right" (click)="onSubmit()">
+    Enregistrer
+  </button>
+</base-card-actions>
+
+</base-card>
+</div>
+<div class="mdl-layout-spacer"></div>
+</div>
+
+
+
+
